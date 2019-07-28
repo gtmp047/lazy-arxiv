@@ -1,6 +1,6 @@
-
+import xmltodict
 try:
-    from urllib.parse import urljoin
+    from urllib.parse import urljoin, urlencode
 except ImportError:
     from urlparse import urlparse
 try:
@@ -11,14 +11,15 @@ except ImportError:
 
 class ArxivCrawler:
     def __init__(self):
-        self.main_url = 'http://export.arxiv.org/api/query'
-
-        pass
+        self.main_url = f'http://export.arxiv.org/api/query?search_query=all:image+segmentation&start=0&max_results=10'
+        data = urlopen(self.main_url).read()
+        a = xmltodict.parse(data)
+        print(data)
 
 
 if __name__ == '__main__':
+    a = ArxivCrawler()
 
-    import xmltodict
 
     url = '?search_query=all:segmentation&start=0&max_results=10'
     data = urlopen(url).read()
