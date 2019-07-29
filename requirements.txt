@@ -2,3 +2,4 @@ xmltodict
 feedparser==5.2.1
 telepot==12.7
 dotted==0.1.8
+PySocks==1.7.0
