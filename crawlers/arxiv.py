@@ -9,9 +9,6 @@ try:
     from urllib.request import urlopen
 except ImportError:
     from urllib2 import urlopen
-import logging
-
-logger = logging.getLogger(__name__)
 
 def get_first(val: list):
     if val and isinstance(val, list):
@@ -30,7 +27,7 @@ class ArxivCrawler:
     def get_entry_infos(entry_list: List):
         res = []
         for i, item in enumerate(entry_list):
-            logger.info(f'Started crawl {i} document')
+            print(f'Started crawl {i} document')
             item['author'] = [i.get('name') for i in item['author']]
             item['pdf_link'] = get_first([i.get('@href') for i in item['link'] if i.get('@type') == 'application/pdf'])
             with requests.session() as sess:

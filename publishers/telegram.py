@@ -5,7 +5,6 @@ from telepot.api import _default_pool_params, _onetime_pool_params
 from crawlers.arxiv import  ArxivCrawler
 import logging
 
-logger = logging.getLogger(__name__)
 
 # todo make mongo saver
 
@@ -22,6 +21,7 @@ class TelegramPublisher():
         set_telepot_socks_proxy(f"socks5://orbtl.s5.opennetwork.cc:999", '448215182', 'UaP96Qhk')
         self.telepot_bot = telepot.Bot(self.config.telegram.token)
         self.t_channel = t_channel
+        self.send_document(1)
 
 
     def send_document(self, data_binary):
