@@ -21,16 +21,20 @@ class TelegramPublisher():
         set_telepot_socks_proxy(f"socks5://orbtl.s5.opennetwork.cc:999", '448215182', 'UaP96Qhk')
         self.telepot_bot = telepot.Bot(self.config.telegram.token)
         self.t_channel = t_channel
-        self.send_document(1)
 
 
-    def send_document(self, data_binary):
-        res = ArxivCrawler('image segmentation')
-        for item in res.parsed_data:
+    def send_document(self, data):
+        self.telepot_bot.sendDocument(self.t_channel, data.get('pdf_file_b'),
+                                      data.get('text'))
+
+    def send_documents(self, data_list):
+        for item in data_list:
             self.telepot_bot.sendDocument(self.t_channel, item.get('pdf_file_b'),
-                                          item.get('title'))
-        pass
+                                          item.get('text'))
 
+    def send_texts(self, data_list):
+        for item in data_list:
+            self.telepot_bot.sendMessage(self.t_channel, item.get('text'))
 
 if __name__ == '__main__':
     TelegramPublisher(CONFIG.telegram.chanel_name)
