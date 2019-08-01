@@ -1,4 +1,4 @@
-from logging import getLevelName, getLogger, LoggerAdapter, FileHandler, Formatter
+from logging import getLevelName, getLogger, FileHandler, Formatter
 
 from utils.interactions import CONFIG, LOG_FILE_PATH, PROJECT_NAME
 

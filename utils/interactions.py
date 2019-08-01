@@ -2,6 +2,7 @@ from os.path import dirname, join, exists, abspath, normpath
 
 import yaml
 from dotted.collection import DottedDict
+from numpy.core.tests.test_scalarinherit import C
 
 PROJECT_NAME = 'lazy-arxiv'
 PROJECT_ROOT_DIR_PATH = abspath(join(dirname(__file__), '..', '..'))
@@ -21,3 +22,4 @@ assert exists(CONFIG_FILE_PATH), 'CONFIG_FILE_PATH not detected!'
 
 with open(CONFIG_FILE_PATH) as conf_file:
     CONFIG = DottedDict(yaml.safe_load(conf_file))
+    CONFIG.data.sqllite = join(DATA_DIR_PATH, CONFIG.data.sqllite)
