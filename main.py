@@ -14,6 +14,8 @@ def create_db(conn):
              NAME           TEXT    NOT NULL,
              ULR            TEXT     NOT NULL);''')
 
+def get_unique_uid_list():
+    raise NotImplementedError()
 
 if __name__ == '__main__':
     import argparse
@@ -24,8 +26,7 @@ if __name__ == '__main__':
     tag_list = []
     telega = TelegramPublisher(CONFIG.telegram.chanel_name)
     with sqlite3.connect(CONFIG.data.sqllite) as conn:
-
-
+        create_db(conn)
         with open(join(DATA_DIR_PATH, args.input)) as fh:
             tag_list = [i.strip() for i in fh.readlines()]
         logger.info(f'Started crawl {len(tag_list)} tags')
